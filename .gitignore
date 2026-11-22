@@ -1,0 +1,44 @@
+# Archivos del sistema y editores
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+.vs/
+*.swp
+*.swo
+*~
+
+# Configuración local y credenciales
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.pfx
+*.p12
+*.ppk
+id_rsa
+id_ed25519
+.netrc
+credentials.json
+secrets.json
+token.txt
+tokens.json
+
+# Temporales, compilaciones y archivos locales de SQL Server
+*.tmp
+*.temp
+*.log
+*.obj
+*.dll
+*.exe
+*.pdb
+bin/
+obj/
+*.bak
+*.trn
+*.mdf
+*.ndf
+*.ldf

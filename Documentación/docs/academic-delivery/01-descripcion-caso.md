@@ -1,0 +1,9 @@
+# Efest · Una bóveda personal con SQL Server
+
+Una persona que administra decenas de cuentas necesita encontrar la credencial de un servicio sin exponer las contraseñas de los demás. Efest resuelve ese problema con una bóveda de escritorio. El usuario puede buscar por título, nombre de usuario, URL, categoría o etiqueta y revelar la contraseña de una sola credencial bajo demanda.
+
+**Protección de los secretos.** El cliente deriva una clave a partir de la contraseña maestra mediante Argon2id y un salt aleatorio por bóveda. Antes de guardar una contraseña, una nota segura o una semilla TOTP, el cliente la cifra con XChaCha20-Poly1305 y un nonce nuevo. SQL Server conserva el resultado cifrado en columnas binarias. Solo el cliente desbloqueado tiene la clave para descifrarlo. Esta arquitectura Zero-Knowledge protege el contenido secreto. Los metadatos de búsqueda son visibles para la base de datos.
+
+**Por qué un modelo relacional.** Una credencial pertenece a una bóveda, puede tener una categoría y admite varias etiquetas que comparte con otras credenciales. Las claves foráneas protegen esas referencias y una tabla puente representa la relación N:M sin duplicar credenciales. Al cambiar una contraseña, una transacción conserva la versión anterior cifrada y guarda la nueva. Un registro de auditoría permite conocer quién realizó una acción y cuándo. Las vistas de resumen y los índices sobre metadatos permiten localizar cuentas sin leer sus contraseñas.
+
+**Alcance del curso.** La Enmienda 001 incorpora el almacenamiento relacional del Spec 007 a la Fase 1. El equipo de cuatro integrantes presenta el modelo de bóvedas, credenciales, clasificación, historial, notas, TOTP y auditoría. El recorrido que articula la presentación es crear una credencial, etiquetarla, encontrarla por su etiqueta y cambiar su contraseña conservando el historial. La sincronización entre dispositivos queda fuera del proyecto académico.

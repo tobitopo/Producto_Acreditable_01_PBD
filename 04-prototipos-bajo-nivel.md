@@ -37,7 +37,7 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 |--------------------------------------------------------------------------|
 | Ficha de credencial           [Editar] [Eliminar]                        |
 | Título [Correo personal  ]    Usuario [ana              ]                |
-| URL    [https://correo.example                         ]                 |
+| URL (opcional) [https://correo.example                   ]               |
 | Contraseña [••••••••] [Mantener presionado para revelar]                 |
 | En edición: Nueva contraseña [••••••••] [Guardar] [Cancelar]             |
 |--------------------------------------------------------------------------|
@@ -47,7 +47,7 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 ```
 
 - **Componentes.** Listado, ficha para alta y edición, control de revelado y confirmación de borrado.
-- **Datos.** `vw_CredentialSummary` alimenta el listado. El cliente recupera la contraseña cifrada y el nonce de la credencial seleccionada únicamente al solicitar el revelado.
+- **Datos.** `vw_CredentialSummary` alimenta el listado. La ficha muestra la URL cuando la credencial tiene una. El cliente recupera la contraseña cifrada y el nonce de la credencial seleccionada únicamente al solicitar el revelado.
 - **Flujo.** Crear o seleccionar una fila, guardar cambios o confirmar el borrado. Al soltar el botón de revelado o bloquear, la contraseña vuelve a enmascararse.
 
 ## RF03 — Modal de categorías y etiquetas

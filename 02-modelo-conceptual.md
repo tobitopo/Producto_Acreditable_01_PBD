@@ -38,7 +38,7 @@ erDiagram
 | Credential | category_id | UNIQUEIDENTIFIER | FK → Category.category_id | No | M |
 | Credential | title | NVARCHAR(200) | — | Sí | M |
 | Credential | username | NVARCHAR(256) | — | No | M |
-| Credential | url | NVARCHAR(2048) | — | No | M |
+| Credential | url | NVARCHAR(2048) | Dirección del servicio en la ficha (RF02) | No | M |
 | Credential | password_ciphertext | VARBINARY(MAX) | Contraseña vigente | Sí | S |
 | Credential | nonce | VARBINARY(24) | Nonce de la contraseña vigente | Sí | M |
 | CredentialHistory | history_id | BIGINT IDENTITY | PK | Sí | M |
@@ -88,7 +88,7 @@ erDiagram
 | vw_CredentialTagSummary | Una fila por asignación de etiqueta | vault_id, credential_id, tag_id, tag_name |
 | vw_SecureNoteSummary | Una fila por nota | vault_id, note_id, title |
 
-Los listados y búsquedas se limitan a la bóveda autorizada y emplean estas vistas con columnas explícitas. El rol de consulta recibe acceso a las vistas y carece de lectura directa de las tablas base. Cada DTO de resumen reproduce solo las columnas permitidas. La búsqueda por etiqueta filtra el resumen por la existencia de una asignación coincidente, lo que conserva una fila por credencial aunque coincidan varias etiquetas. Los índices de búsqueda se orientan al título y al usuario dentro de la bóveda, y al recorrido de CredentialTag desde la etiqueta.
+Los listados y búsquedas se limitan a la bóveda autorizada y emplean estas vistas con columnas explícitas. El rol de consulta recibe acceso a las vistas y carece de lectura directa de las tablas base. Cada DTO de resumen reproduce solo las columnas permitidas. RF07 busca por título y usuario y filtra por categoría y etiquetas. La URL se conserva como metadato de la ficha. La búsqueda por etiqueta filtra el resumen por la existencia de una asignación coincidente, lo que conserva una fila por credencial aunque coincidan varias etiquetas. Los índices de búsqueda se orientan al título y al usuario dentro de la bóveda, y al recorrido de CredentialTag desde la etiqueta.
 
 Revelar una contraseña sigue una operación de acceso distinta. El cliente desbloqueado solicita una sola credencial por identificador, comprueba su ámbito autorizado, recupera su par cifrado y nonce y registra el evento. Ninguna vista de listado proyecta cargas cifradas ni parámetros criptográficos.
 

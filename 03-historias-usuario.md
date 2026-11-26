@@ -21,6 +21,7 @@ Como titular de una bóveda, quiero crear, consultar, editar y eliminar credenci
 2. **Dadas** dos credenciales propias, **cuando** consulto el listado y pido revelar una por su identificador, **entonces** el listado devuelve dos resúmenes sin secretos y la operación de revelado entrega solo la contraseña solicitada. Un identificador de otra bóveda no devuelve ningún secreto.
 3. **Dada** una credencial existente, **cuando** edito su título y su contraseña, **entonces** conserva su identificador, el resumen muestra el título actualizado y el siguiente revelado devuelve la nueva contraseña.
 4. **Dada** una credencial con datos asociados, **cuando** confirmo su eliminación, **entonces** desaparece del resumen, su identificador ya no permite revelarla y quedan cero filas dependientes en el puente de etiquetas, el historial y la configuración TOTP. Las demás credenciales conservan sus datos.
+5. **Dadas** dos credenciales con título y contraseña, **cuando** guardo una con URL y la otra sin ella, **entonces** la ficha de la primera muestra la URL guardada y la segunda se guarda con `Credential.url` en `NULL`.
 
 **Justificación relacional.** `Credential.vault_id` referencia a `Vault.vault_id`. La vista `vw_CredentialSummary` proyecta los metadatos de lectura. La operación de revelado accede a `Credential.password_ciphertext` y `Credential.nonce` por credencial y bóveda autorizadas. El borrado respeta las FK de `CredentialTag`, `CredentialHistory` y `TotpConfig` en una transacción.
 
@@ -72,6 +73,7 @@ Como titular de una bóveda, quiero filtrar mis credenciales por título, usuari
 1. **Dadas** varias credenciales que comparten título, usuario o categoría, **cuando** combino esos tres filtros, **entonces** el resultado contiene solo las credenciales de mi bóveda que cumplen las tres condiciones. Al omitir la categoría, también pueden aparecer las credenciales sin clasificar.
 2. **Dada** una credencial con dos etiquetas seleccionadas, **cuando** busco coincidencias con cualquiera de ellas, **entonces** la credencial aparece exactamente una vez y las credenciales sin ninguna coincidencia quedan fuera.
 3. **Dadas** dos bóvedas con metadatos idénticos, **cuando** busco desde una de ellas con el rol de listado, **entonces** obtengo solo identificadores de la bóveda autorizada y las columnas del DTO de resumen. La consulta devuelve cero contraseñas, blobs o nonces y el rol carece de lectura directa de las tablas base.
+4. **Dada** una credencial que contiene el texto «portal» solo en la URL, **cuando** busco «portal» en el campo Título o en el campo Usuario, **entonces** la credencial queda fuera del resultado.
 
 **Justificación relacional.** `vw_CredentialSummary` conserva una fila por `Credential`, con su `Category` opcional. Los JOIN entre `CredentialTag` y `Tag` sustentan `vw_CredentialTagSummary`. El filtro comprueba si existe una asignación coincidente en la misma bóveda, para evitar duplicados. Los índices sobre metadatos y claves del puente permiten resolver la búsqueda sin leer secretos.
 

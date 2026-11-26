@@ -19,7 +19,7 @@ Como titular de una bóveda, quiero crear, consultar, editar y eliminar credenci
 
 1. **Dada** una bóveda desbloqueada, **cuando** guardo una credencial con título y contraseña, **entonces** se crea una fila en mi bóveda con la contraseña cifrada en el cliente mediante XChaCha20-Poly1305 y un nonce nuevo de 24 bytes.
 2. **Dadas** dos credenciales propias, **cuando** consulto el listado y pido revelar una por su identificador, **entonces** el listado devuelve dos resúmenes sin secretos y la operación de revelado entrega solo la contraseña solicitada. Un identificador de otra bóveda no devuelve ningún secreto.
-3. **Dada** una credencial existente, **cuando** edito su título y su contraseña, **entonces** conserva su identificador, el resumen muestra el título actualizado y el siguiente revelado devuelve la nueva contraseña.
+3. **Dada** una credencial existente, **cuando** edito su título en la ficha y cambio su contraseña desde el historial (RF04), **entonces** conserva su identificador, el resumen muestra el título actualizado y el siguiente revelado devuelve la nueva contraseña.
 4. **Dada** una credencial con datos asociados, **cuando** confirmo su eliminación, **entonces** desaparece del resumen, su identificador ya no permite revelarla y quedan cero filas dependientes en el puente de etiquetas, el historial y la configuración TOTP. Las demás credenciales conservan sus datos.
 5. **Dadas** dos credenciales con título y contraseña, **cuando** guardo una con URL y la otra sin ella, **entonces** la ficha de la primera muestra la URL guardada y la segunda se guarda con `Credential.url` en `NULL`.
 

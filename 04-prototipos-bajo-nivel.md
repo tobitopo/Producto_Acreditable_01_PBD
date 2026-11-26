@@ -3,6 +3,8 @@
 Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuario.md). Las claves y semillas se representan con `••••••••`. El revelado de contraseñas dura mientras se mantiene presionado el botón. Bloquear la bóveda oculta los secretos y devuelve al acceso de RF01.
 
 ## RF01 — Pantalla de creación y desbloqueo de bóveda
+![Wireframe RF01](img/RF01_acceso_boveda.jpg)
+
 
 ```text
 +--------------------------------------------------------------------------+
@@ -25,6 +27,8 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 - **Flujo.** Elegir o crear una bóveda, validar la contraseña localmente y entrar. Bloquear purga la clave y vuelve a esta pantalla.
 
 ## RF02 — Pantalla de gestión de credenciales
+![Wireframe RF02](img/RF02_credenciales.jpg)
+
 
 ```text
 +--------------------------------------------------------------------------+
@@ -39,18 +43,19 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 | Título [Correo personal  ]    Usuario [ana              ]                |
 | URL (opcional) [https://correo.example                   ]               |
 | Contraseña [••••••••] [Mantener presionado para revelar]                 |
-| En edición: Nueva contraseña [••••••••] [Guardar] [Cancelar]             |
+| En edición: [Guardar] [Cancelar]    [Ver historial de contraseñas]        |
 |--------------------------------------------------------------------------|
 | Confirmar eliminación: se borrarán historial, etiquetas asignadas        |
 | y configuración TOTP de la credencial. [Cancelar] [Eliminar]             |
 +--------------------------------------------------------------------------+
 ```
 
-- **Componentes.** Listado, ficha para alta y edición, control de revelado y confirmación de borrado.
+- **Componentes.** Ventana para consultar y editar una credencial, con control de revelado, acceso al historial y confirmación de borrado. El formulario de alta solicita título, usuario, URL opcional, contraseña y clasificación opcional.
 - **Datos.** `vw_CredentialSummary` alimenta el listado. La ficha muestra la URL cuando la credencial tiene una. El cliente recupera la contraseña cifrada y el nonce de la credencial seleccionada únicamente al solicitar el revelado.
-- **Flujo.** Crear o seleccionar una fila, guardar cambios o confirmar el borrado. Al soltar el botón de revelado o bloquear, la contraseña vuelve a enmascararse.
+- **Flujo.** Abrir una credencial para editar sus datos o revelar su contraseña mientras se mantiene presionado el botón. Al soltarlo o bloquear la bóveda, se vuelve a enmascarar. El cambio de contraseña se gestiona desde el historial (RF04). Al confirmar la eliminación se borran el historial, las etiquetas asignadas y la configuración TOTP.
 
 ## RF03 — Modal de categorías y etiquetas
+![Wireframe RF03](img/RF03_categorias_etiquetas.jpg)
 
 ```text
 +--------------------------------------------------------------------------+
@@ -75,6 +80,8 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 - **Flujo.** Seleccionar una categoría o dejarla vacía, marcar varias etiquetas y guardar. Una asignación ajena a la bóveda conserva la clasificación previa.
 
 ## RF04 — Pantalla de cambio de contraseña e historial
+![Wireframe RF04](img/RF04_cambio_historial.jpg)
+
 
 ```text
 +--------------------------------------------------------------------------+
@@ -93,11 +100,13 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 +--------------------------------------------------------------------------+
 ```
 
-- **Componentes.** Formulario de cambio, aviso sobre el archivado y lista de versiones ordenada por fecha.
+- **Componentes.** Contraseña vigente enmascarada con control de revelado, lista de versiones ordenada por fecha y formulario opcional para cambiar la contraseña.
 - **Datos.** `vw_CredentialSummary` aporta el título. El historial lista solo metadatos de `CredentialHistory`. El revelado de la contraseña vigente se solicita por separado, como en RF02.
-- **Flujo.** Guardar una nueva contraseña archiva la anterior y actualiza el listado tras confirmar la transacción. Si falla, se conserva el estado previo.
+- **Flujo.** Abrir el historial desde la ficha y consultar las versiones anteriores con su fecha UTC. Guardar una nueva contraseña archiva la anterior cifrada y actualiza el historial tras confirmar la transacción. Si falla, se conserva el estado previo.
 
 ## RF05 — Pantalla de auditoría
+![Wireframe RF05](img/RF05_auditoria.jpg)
+
 
 ```text
 +--------------------------------------------------------------------------+
@@ -121,6 +130,8 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 - **Flujo.** Aplicar filtros y consultar eventos. Una referencia histórica permanece visible aunque se elimine la credencial correspondiente.
 
 ## RF06 — Pantalla de notas seguras y TOTP
+![Wireframe RF06](img/RF06_notas_totp.jpg)
+
 
 ```text
 +--------------------------------------------------------------------------+
@@ -146,6 +157,8 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 - **Flujo.** Abrir o editar una nota. Para TOTP, seleccionar la credencial, guardar su configuración y generar el código en el cliente desbloqueado.
 
 ## RF07 — Pantalla de búsqueda y filtrado
+![Wireframe RF07](img/RF07_busqueda_filtrado.jpg)
+
 
 ```text
 +--------------------------------------------------------------------------+
@@ -168,6 +181,7 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 - **Flujo.** Combinar los filtros, buscar y abrir un resultado en su ficha. Una credencial aparece una vez aunque coincida con dos etiquetas.
 
 ## RF08 — Modal de respaldo y exportación
+![Wireframe RF08](img/RF08_respaldo_exportacion.jpg)
 
 ```text
 +--------------------------------------------------------------------------+

@@ -50,9 +50,9 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 +--------------------------------------------------------------------------+
 ```
 
-- **Componentes.** Listado, ficha para alta y edición, control de revelado y confirmación de borrado.
+- **Componentes.** Popup para ver una credencial (usuario, URL, contraseña enmascarada con control de revelado, clasificación, acceso al historial de cambios y eliminación) y popup para agregar una credencial (título, usuario, URL, contraseña y clasificación opcional).
 - **Datos.** `vw_CredentialSummary` alimenta el listado. El cliente recupera la contraseña cifrada y el nonce de la credencial seleccionada únicamente al solicitar el revelado.
-- **Flujo.** Crear o seleccionar una fila, guardar cambios o confirmar el borrado. Al soltar el botón de revelado o bloquear, la contraseña vuelve a enmascararse.
+- **Flujo.** Tocar una credencial, revelar su contraseña mientras se mantiene presionado el botón, editar sus datos (título, usuario, URL y clasificación) o eliminarla con confirmación. El cambio de contraseña se gestiona desde el historial (RF04). Al eliminar se borran historial, etiquetas asignadas y configuración TOTP.
 
 ## RF03 — Modal de categorías y etiquetas
 ![Wireframe RF03](img/RF03_categorias_etiquetas.jpg)
@@ -125,9 +125,9 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 +--------------------------------------------------------------------------+
 ```
 
-- **Componentes.** Filtros por periodo, actor y acción, tabla paginada y estado de solo lectura.
-- **Datos.** Una consulta autorizada a `AuditLog` devuelve actor, instante, acción, bóveda y referencia histórica. Esta pantalla maneja únicamente metadatos.
-- **Flujo.** Aplicar filtros y consultar eventos. Una referencia histórica permanece visible aunque se elimine la credencial correspondiente.
+- **Componentes.** Contraseña actual enmascarada con control de revelado, lista de versiones anteriores ordenada por fecha y una acción opcional para cambiar la contraseña.
+- **Datos.** `vw_CredentialSummary` aporta el título. El historial lista solo metadatos de `CredentialHistory`. El revelado de la contraseña vigente se solicita por separado, como en RF02.
+- **Flujo.** Abrir el historial desde la ficha de la credencial, sin necesidad de cambiar nada, y revisar las versiones anteriores con su fecha UTC. Si el usuario decide cambiar la contraseña, la vigente se archiva cifrada y aparece como una nueva versión tras confirmar la transacción. Si falla, se conserva el estado previo.
 
 ## RF06 — Pantalla de notas seguras y TOTP
 ![Wireframe RF06](img/RF06_notas_totp.jpg)

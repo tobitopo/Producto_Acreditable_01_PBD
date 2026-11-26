@@ -3,6 +3,8 @@
 Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuario.md). Las claves y semillas se representan con `••••••••`. El revelado de contraseñas dura mientras se mantiene presionado el botón. Bloquear la bóveda oculta los secretos y devuelve al acceso de RF01.
 
 ## RF01 — Pantalla de creación y desbloqueo de bóveda
+![Wireframe RF01](img/RF01_acceso_boveda.jpg)
+
 
 ```text
 +--------------------------------------------------------------------------+
@@ -25,6 +27,8 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 - **Flujo.** Elegir o crear una bóveda, validar la contraseña localmente y entrar. Bloquear purga la clave y vuelve a esta pantalla.
 
 ## RF02 — Pantalla de gestión de credenciales
+![Wireframe RF02](img/RF02_credenciales.jpg)
+
 
 ```text
 +--------------------------------------------------------------------------+
@@ -51,6 +55,7 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 - **Flujo.** Crear o seleccionar una fila, guardar cambios o confirmar el borrado. Al soltar el botón de revelado o bloquear, la contraseña vuelve a enmascararse.
 
 ## RF03 — Modal de categorías y etiquetas
+![Wireframe RF03](img/RF03_categorias_etiquetas.jpg)
 
 ```text
 +--------------------------------------------------------------------------+
@@ -75,6 +80,8 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 - **Flujo.** Seleccionar una categoría o dejarla vacía, marcar varias etiquetas y guardar. Una asignación ajena a la bóveda conserva la clasificación previa.
 
 ## RF04 — Pantalla de cambio de contraseña e historial
+![Wireframe RF04](img/RF04_cambio_historial.jpg)
+
 
 ```text
 +--------------------------------------------------------------------------+
@@ -98,6 +105,8 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 - **Flujo.** Guardar una nueva contraseña archiva la anterior y actualiza el listado tras confirmar la transacción. Si falla, se conserva el estado previo.
 
 ## RF05 — Pantalla de auditoría
+![Wireframe RF05](img/RF05_auditoria.jpg)
+
 
 ```text
 +--------------------------------------------------------------------------+
@@ -121,6 +130,8 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 - **Flujo.** Aplicar filtros y consultar eventos. Una referencia histórica permanece visible aunque se elimine la credencial correspondiente.
 
 ## RF06 — Pantalla de notas seguras y TOTP
+![Wireframe RF06](img/RF06_notas_totp.jpg)
+
 
 ```text
 +--------------------------------------------------------------------------+
@@ -146,6 +157,8 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 - **Flujo.** Abrir o editar una nota. Para TOTP, seleccionar la credencial, guardar su configuración y generar el código en el cliente desbloqueado.
 
 ## RF07 — Pantalla de búsqueda y filtrado
+![Wireframe RF07](img/RF07_busqueda_filtrado.jpg)
+
 
 ```text
 +--------------------------------------------------------------------------+
@@ -168,6 +181,7 @@ Los ocho wireframes corresponden a las [historias de usuario](03-historias-usuar
 - **Flujo.** Combinar los filtros, buscar y abrir un resultado en su ficha. Una credencial aparece una vez aunque coincida con dos etiquetas.
 
 ## RF08 — Modal de respaldo y exportación
+![Wireframe RF08](img/RF08_respaldo_exportacion.jpg)
 
 ```text
 +--------------------------------------------------------------------------+
